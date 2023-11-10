@@ -10,21 +10,6 @@ import java.util.Comparator;
 public class AlbumImpl implements Album {
     private Photo[] photos;
     private int size;
-    private Comparator<Photo> photoComparator = new Comparator<>() {
-        @Override
-        public int compare(Photo o1, Photo o2) {
-            if (o1 == null && o2 == null) {
-                return 0;
-            }
-            if (o1 == null) {
-                return 1;
-            }
-            if (o2 == null) {
-                return -1;
-            }
-            return o1.compareTo(o2);
-        }
-    };
 
     public AlbumImpl(int capacity) {
         this.photos = new Photo[capacity];
@@ -48,7 +33,7 @@ public class AlbumImpl implements Album {
         }
 
         photos[size++] = photo;
-        Arrays.sort(photos, photoComparator);
+        Arrays.sort(photos, 0, size);
         return true;
     }
 
@@ -59,8 +44,6 @@ public class AlbumImpl implements Album {
                 System.arraycopy(photos, i + 1, photos, i, size - i - 1);
                 photos[size] = null;
                 size--;
-
-                Arrays.sort(photos, photoComparator);
 //                photos[i] = photos[size];
 //                photos[size] = null;
 //                size--;
