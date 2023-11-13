@@ -1,4 +1,4 @@
-package collection;
+package ArrayList.src.collection;
 
 public interface MyList<E> {
     void add(E o);
