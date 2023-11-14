@@ -87,7 +87,7 @@ public class MyLinkedList<T> implements MyList<T> {
     public boolean contains(T element) {
         Node<T> current = first;
         while (current.getNext() != null) {
-            if(current == element){
+            if(current.equals(element)){
                 return true;
             }
             current = current.getNext();
