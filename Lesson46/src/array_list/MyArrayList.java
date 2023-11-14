@@ -1,6 +1,7 @@
 package array_list;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MyArrayList<T> implements MyList<T> {
 
@@ -43,23 +44,18 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void set(int index, T element) {
-        if(index >=0 && index < size) {
-            if(size == elements.length) {
-                int newSize = elements.length + (elements.length / 2);
-                elements = Arrays.copyOf(elements, newSize);
-            }
-            System.arraycopy(elements,index, elements, index+1, size - index);
-            size++;
-            elements[index] = element;
+        if (index < 0 || index >= size) {
+//            throw new IllegalArgumentException("Неверный индекс!");
+            System.out.println("Неверный индекс!");
             return;
         }
-        throw new IllegalArgumentException("Неверный индекс!");
+        elements[index] = element;
     }
 
     @Override
     public boolean contains(T element) {
-        for (int i = 0; i < elements.length; i++) {
-            if (elements[i] == element){
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(element,elements[i])){
                 return true;
             }
         }
@@ -67,13 +63,12 @@ public class MyArrayList<T> implements MyList<T> {
     }
     @Override
     public T remove(int index) {
-        if(index >=0 && index < size) {
-            T removedElement = (T) elements[index];
-            System.arraycopy(elements, index + 1, elements, index, elements.length - index - 1);
-            size--;
-            return removedElement;
+        if(index < 0 || index >= size) {
+            throw new IllegalArgumentException("Неверный индекс!");
         }
-        return null;
+        Object deletedElement = elements[index];
+        System.arraycopy(elements, index + 1, elements, index,--size - index);
+        return (T) deletedElement;
     }
 
     @Override

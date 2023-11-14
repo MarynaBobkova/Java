@@ -35,6 +35,24 @@ public class Main {
         System.out.println("Размер листа - " + list.size());
         System.out.println(list);
 
+        System.out.println("Есть ли в листе FFF? - " + list.contains("FFF"));
+        System.out.println("Есть ли в листе MMM? - " + list.contains("MMM"));
+        System.out.println("Есть ли в листе null? - " + list.contains(null));
+
+        list.set(4, null);
+
+        System.out.println(list);
+
+        System.out.println("Есть ли в листе FFF? - " + list.contains("FFF"));
+        System.out.println("Есть ли в листе MMM? - " + list.contains("MMM"));
+        System.out.println("Есть ли в листе null? - " + list.contains(null));
+
+        System.out.println("Размер листа - " + list.size());
+        String deletedElement = list.remove(2);
+
+        System.out.println("Удаленый элемент - " + deletedElement);
+        System.out.println("Размер листа - " + list.size());
+        System.out.println(list);
 
 
 
