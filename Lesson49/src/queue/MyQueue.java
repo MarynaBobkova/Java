@@ -7,6 +7,7 @@ public class MyQueue<T> implements MyCollection<T> {
     private int size;
     private int head;
     private int tail;
+
     @Override
     public int size() {
         return size;
@@ -19,24 +20,24 @@ public class MyQueue<T> implements MyCollection<T> {
 
     @Override
     public void push(T element) {
-        if(tail == elements.length - 1){
+        if (tail == elements.length - 1) {
             System.out.println("Очередь заполнена");
             return;
         }
-        if(element == null) {
+        if (element == null) {
             System.out.println("Добовляемый элемент не может быть null");
         }
-        if (!isEmpty()){
+        if (!isEmpty()) {
             tail++;
         }
-        elements[tail]=element;
+        elements[tail] = element;
         size++;
 
     }
 
     @Override
     public T pop() {
-        if(isEmpty()){
+        if (isEmpty()) {
             System.out.println("Очередь пустая");
             return null;
         }
@@ -45,7 +46,7 @@ public class MyQueue<T> implements MyCollection<T> {
         elements[head++] = null;
         size--;
 
-        if(isEmpty()){
+        if (isEmpty()) {
             head = 0;
             tail = 0;
         }
@@ -54,7 +55,7 @@ public class MyQueue<T> implements MyCollection<T> {
 
     @Override
     public T peek() {
-        if(isEmpty()){
+        if (isEmpty()) {
             System.out.println("Очередь пустая");
             return null;
         }
@@ -63,26 +64,30 @@ public class MyQueue<T> implements MyCollection<T> {
 
     @Override
     public int search(T element) {
-        for (int i = head; i <= tail; i++) {
-            if (elements[i].equals(element)) {
-                return i - head;
-            }
+        if (isEmpty()) {
+            System.out.println("Очередь пустая");
+            return -1;
         }
-        return -1; // элемент не найден
-    }
+            for (int i = head; i <= tail; i++) {
+                if (elements[i].equals(element)) {
+                    return i - head;
+                }
+            }
+            return -1; // элемент не найден
+        }
 
     @Override
     public String toString() {
-        if (isEmpty()) {
-            return "[]";
-        }
+            if (isEmpty()) {
+                return "[]";
+            }
 
-        StringBuilder builder = new StringBuilder("[");
-        for (int i = head; i <= tail; i++) {
-            builder.append(elements[i]).append(", ");
-        }
-        builder.setLength(builder.length() - 2);
-        builder.append("]");
-        return builder.toString();
+            StringBuilder builder = new StringBuilder("[");
+            for (int i = head; i <= tail; i++) {
+                builder.append(elements[i]).append(", ");
+            }
+            builder.setLength(builder.length() - 2);
+            builder.append("]");
+            return builder.toString();
     }
 }
