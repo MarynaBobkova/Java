@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="ch.leadrian.stubr.javafaker" type="repository">
+    <properties maven-id="ch.leadrian.stubr:stubr-javafaker:2.1.0-b3" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/ch/leadrian/stubr/stubr-javafaker/2.1.0-b3/stubr-javafaker-2.1.0-b3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/ch/leadrian/stubr/stubr-core/2.1.0-b3/stubr-core-2.1.0-b3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/ch/leadrian/equalizer/equalizer-core/1.2.1/equalizer-core-1.2.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/javafaker/javafaker/1.0.2/javafaker-1.0.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.5/commons-lang3-3.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/yaml/snakeyaml/1.23/snakeyaml-1.23-android.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/mifmif/generex/1.0.2/generex-1.0.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/dk/brics/automaton/automaton/1.11-8/automaton-1.11-8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/1.4.31/kotlin-stdlib-1.4.31.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib-common/1.4.31/kotlin-stdlib-common-1.4.31.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/annotations/13.0/annotations-13.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/ch/leadrian/stubr/stubr-shaded-dependencies/1.1.0/stubr-shaded-dependencies-1.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
