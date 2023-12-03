@@ -9,10 +9,11 @@ public class Main {
     public static void main(String[] args) {
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee("Aleks", "Developer", 1500));
+        employees.add(new Employee("Ken", "Developer", 900));
         employees.add(new Employee("Thomas", "Manager", 680.50));
         employees.add(new Employee("Thea", "CEO", 2000));
-        employees.add(new Employee("Mary", "Manager", 700));
-        employees.add(new Employee("Ken", "Developer", 900));
+        employees.add(new Employee("Mary", "Manager", 800));
+        employees.add(new Employee("Katy", "Manager", 700));
 
         //        0. Создать класс Employee
 //        1. Вывести всех сотрудников без высшего руководителя
@@ -53,15 +54,17 @@ public class Main {
 
         Double result3_2 = employees.stream()
                 .collect(Collectors.averagingDouble(x -> x.getSalary()));
+        // .collect(Collectors.averagingDouble(value -> value.getSalary()));
+        //                .collect(Collectors.averagingDouble(Employee::getSalary));
         System.out.println(result3_2);
         System.out.println("-".repeat(60));
 
         System.out.println("Задача 4: ");
 
         List<String> result4 = employees.stream()
-                        .filter(x -> x.getSalary() > 1000)
-                        .map(x -> x.getName())
-                        .collect(Collectors.toList());
+                .filter(x -> x.getSalary() > 1000)
+                .map(x -> x.getName())
+                .collect(Collectors.toList());
         System.out.println(result4);
         System.out.println("-".repeat(60));
 
@@ -79,9 +82,13 @@ public class Main {
         System.out.println("Задача 6: ");
 
         Employee result6 = employees.stream()
-                        .min((o1, o2) -> (int) (o1.getSalary() - o2.getSalary())).get();
+                .min((o1, o2) -> (int) (o1.getSalary() - o2.getSalary())).get();
         System.out.println(result6);
         System.out.println("-".repeat(60));
+
+        //Employee result6 = employees.stream()
+        //                .min((x, y) -> Double.compare(x.getSalary(), y.getSalary()))
+        //                .orElse(null);
 
         System.out.println("Задача 7: ");
         Map<String, List<Employee>> result = employees.stream()
@@ -93,5 +100,38 @@ public class Main {
             System.out.println(result7);
         });
         System.out.println("-".repeat(60));
+
+        // employees.stream()
+        //                .collect(Collectors.groupingBy(x -> x.getPosition()))
+        //                .forEach((x, y) -> y.stream()
+        //                        .sorted((a, b) -> Double.compare(b.getSalary(), a.getSalary()))
+        //                        .limit(1)
+        //                        .forEach(System.out::println));
+
+        System.out.println("Задача 8:");
+
+        System.out.println("Исходный список:");
+        employees.forEach(System.out::println);
+
+        System.out.println();
+
+        Map<String, List<Employee>> employeesByPosition = employees.stream()
+                .collect(Collectors.groupingBy(x -> x.getPosititon()));
+        employeesByPosition.put("Worker", null);
+        employeesByPosition.put("Secretary", new ArrayList<>());
+        for (List<Employee> list : employeesByPosition.values()) {
+            if (list != null && !list.isEmpty()) {
+                list.sort((x, y) -> Double.compare(y.getSalary(), x.getSalary()));
+                double max = list.get(0).getSalary();
+//                list.forEach(x -> {
+//                    if (x.getSalary() == max) {
+//                        System.out.println(x);
+//                    }
+//                });
+                list.stream()
+                        .filter(x -> x.getSalary() == max)
+                        .forEach(System.out::println);
+            }
+        }
     }
 }
