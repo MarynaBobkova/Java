@@ -79,8 +79,10 @@ public class Application {
                 case 3: //ветка для работы с заказом
                     System.out.println("Choose an operation:\n" +
                             "1. Create new order \n" +
-                            "2. Delete dish from order \n"+
-                            "3. Get list all dishes \n");
+                            "2. Add dish to order \n" +
+                            "3. Delete dish from order \n"+
+                            "4. Get list all dishes \n"+
+                            "5. Finish order \n");
 
                     int operationNum2 = Integer.parseInt(scanner.nextLine());
 
