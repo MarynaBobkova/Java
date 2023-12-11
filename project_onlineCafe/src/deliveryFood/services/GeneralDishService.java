@@ -16,10 +16,10 @@ public class GeneralDishService implements DishService {
     @Override
     public void addDish(String name, double price) {
         if(name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Наименование блюда не может быть пустым");
+            throw new IllegalArgumentException("The name of the dish cannot be empty");
         }
         if (price <= 0) {
-            throw new IllegalArgumentException("Цена не может быть отрицательной и равняться нулю");
+            throw new IllegalArgumentException("The price cannot be negative and equal to zero");
         }
         repository.addDish(name, price);
     }

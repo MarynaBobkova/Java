@@ -61,6 +61,7 @@ public class MainController {
                             System.out.println("Incorrect input!");
                             break;
                     }
+
                 case 2: // Эта ветка для работы с покупателями // Здесь мы бы вызывали контроллер покупателя
                     switch (operationNum){
                         case 1:
@@ -107,6 +108,7 @@ public class MainController {
                             return result;
                     }
                     break;
+
                 case 3:
                 switch (operationNum) {
                     case 1:
@@ -126,8 +128,6 @@ public class MainController {
                 }
                 break;
             }
-
-
             return result;
 
         } catch (Exception e) {

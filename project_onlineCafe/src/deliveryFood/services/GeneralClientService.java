@@ -22,10 +22,10 @@ public class GeneralClientService implements ClientService {
     @Override
     public void addClient(String name, String adress) {
         if(name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Имя не может быть пустым");
+            throw new IllegalArgumentException("Name can't be empty");
         }
         if (adress == null || adress.isEmpty()) {
-            throw new IllegalArgumentException("Адрес не может быть пустым");
+            throw new IllegalArgumentException("Adress can't be empty");
         }
         repository.addClient(name, adress);
     }

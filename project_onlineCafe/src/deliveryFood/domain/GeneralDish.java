@@ -10,14 +10,11 @@ public class GeneralDish implements Dish {
     private String name;
     private double price;
 
-
-
     public GeneralDish(String name, double price) {
         this.name = name;
         this.price = price;
         this.isAvailable = true;
     }
-
 
     @Override
     public int getId() {

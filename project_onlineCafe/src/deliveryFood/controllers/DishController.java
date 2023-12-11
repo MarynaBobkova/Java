@@ -8,11 +8,9 @@ import java.util.Scanner;
 
 public class DishController {
     private DishService service;
-
     public DishController(DishService service) {
         this.service = service;
     }
-
     public void addDish() {
         try {
             Scanner scanner = new Scanner(System.in);
