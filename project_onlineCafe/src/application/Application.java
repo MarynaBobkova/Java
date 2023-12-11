@@ -33,7 +33,7 @@ public class Application {
                     "1. Dish. \n" +
                     "2. Client. \n" +
                     "3. Order. \n" +
-                    "0. Exit.");
+                    "0. Exit. \n");
             int objectNum = Integer.parseInt(scanner.nextLine());
 
             switch (objectNum) {

@@ -6,13 +6,9 @@ import deliveryFood.domain.interfaces.Dish;
 import deliveryFood.domain.interfaces.Order;
 import deliveryFood.services.interfaces.ClientService;
 import deliveryFood.services.interfaces.DishService;
-
 import java.util.List;
 import java.util.Scanner;
-//"1. Create new order \n" +
-//                            "2. Add dish to order \n" +
-//                            "3. Delete dish from order \n"+
-//                            "4. Get list all dishes \n"+
+
 public class OrderController {
     private ClientService serviceClient;
     private DishService serviceDish;

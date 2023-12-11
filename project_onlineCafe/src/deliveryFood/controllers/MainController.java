@@ -58,7 +58,7 @@ public class MainController {
                             result.add(result1);
                             return result;
                         default:
-                            System.out.println("Некорректный ввод!");
+                            System.out.println("Incorrect input!");
                             break;
                     }
                 case 2: // Эта ветка для работы с покупателями // Здесь мы бы вызывали контроллер покупателя
@@ -131,7 +131,7 @@ public class MainController {
             return result;
 
         } catch (Exception e) {
-            System.out.println("Произощла ошибка в главном контроллере!");
+            System.out.println("An error has occurred in the main controller!");
             throw new RuntimeException(e);
         }
     }
