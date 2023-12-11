@@ -8,6 +8,5 @@ public interface Dish {
     void setName(String name);
     double getPrice();
     void setPrice(double price);
-
-
+    String toStringOrder();
 }

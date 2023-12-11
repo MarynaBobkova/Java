@@ -108,24 +108,23 @@ public class MainController {
                     }
                     break;
                 case 3:
-                    switch (operationNum) {
-                        case 1:
-                            orderController.addOrder();
-                            return result;
-                        case 2:
+                switch (operationNum) {
+                    case 1:
+                        orderController.addOrder();
+                        return result;
 
-                            return result;
-                        case 3:
+                    case 2:
+                        orderController.deleteOrderById();
+                        return result;
 
-                            return result;
-                        case 4:
-
-                            return result;
-                        default:
-                            System.out.println("Некорректный ввод!");
-                            break;
-                    }
-                    break;
+                    case 3:
+                        orderController.viewOrder();
+                        return result;
+                    default:
+                        System.out.println("Invalid input!");
+                        break;
+                }
+                break;
             }
 
 

@@ -10,11 +10,14 @@ public class GeneralDish implements Dish {
     private String name;
     private double price;
 
+
+
     public GeneralDish(String name, double price) {
         this.name = name;
         this.price = price;
         this.isAvailable = true;
     }
+
 
     @Override
     public int getId() {
@@ -79,8 +82,14 @@ public class GeneralDish implements Dish {
     }
     @Override
     public String toString() {
-        return String.format("id - %d, " +
-                        "name - %s, price - %.2f, available - %s.",
+        return String.format("%d. " +
+                        " %s, price - %.2f, is active - %s.",
                 id , name, price, isAvailable ? "yes" : "no");
     }
+    @Override
+    public String toStringOrder() {
+        return String.format(" %s, price - %.2f",
+                name, price);
+    };
+
 }

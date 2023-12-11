@@ -8,7 +8,7 @@ public interface DishService {
     void addDish(String name, double price);
     List<Dish> getAllAvailableDishes();
     List<Dish> getAllDishes();
-    void getDishById(int id);
+    Dish getDishById(int id);
     void deleteDishById(int id);
     void deleteDishByName(String name);
     void restoreDishById(int id);

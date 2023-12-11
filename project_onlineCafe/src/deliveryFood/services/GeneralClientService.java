@@ -1,8 +1,10 @@
 package deliveryFood.services;
 
 import deliveryFood.domain.interfaces.Client;
+import deliveryFood.domain.interfaces.Dish;
 import deliveryFood.domain.interfaces.Order;
 import deliveryFood.repositories.interfaces.ClientRepository;
+import deliveryFood.repositories.interfaces.DishRepository;
 import deliveryFood.services.interfaces.ClientService;
 
 import java.util.List;
@@ -10,9 +12,13 @@ import java.util.stream.Collectors;
 
 public class GeneralClientService implements ClientService {
     private ClientRepository repository;
-    public GeneralClientService (ClientRepository repository) {
+    private DishRepository dishRepository;
+
+    public GeneralClientService(ClientRepository repository, DishRepository dishRepository) {
         this.repository = repository;
+        this.dishRepository = dishRepository;
     }
+
     @Override
     public void addClient(String name, String adress) {
         if(name == null || name.isEmpty()) {
@@ -25,6 +31,15 @@ public class GeneralClientService implements ClientService {
     }
     public Client getClientByName(String name) {
         return repository.getClientByName(name);
+    }
+    public List<Dish> getDishesFromLastOrder(int id){
+           List<Order> orders = repository.getClientById(id).getOrders();
+           return orders.get(orders.size()-1).getDishesInOrder();
+    }
+
+    public Order getLastOrder(int clientId) {
+        List<Order> orders = repository.getClientById(clientId).getOrders();
+        return orders.get(orders.size()-1);
     }
 
     @Override
@@ -48,6 +63,11 @@ public class GeneralClientService implements ClientService {
         }
         throw new IllegalArgumentException("Client by id not found");
     }
+    public void deleteDishFromLastOrderByPosition(int clientId, int position) {
+        List<Order> orders = repository.getClientById(clientId).getOrders();
+        orders.get(orders.size()-1).getDishesInOrder().remove(position-1);
+    }
+
 
     @Override
     public void deleteClientById(int id) {
@@ -113,5 +133,15 @@ public class GeneralClientService implements ClientService {
     @Override
     public int orderQuantityByClient(int id) {
         return getAllOrdersByClientById(id).size();
+    }
+
+    @Override
+    public List<Dish> makeOrder(int clientId) {
+        return repository.getClientById(clientId).makeOrder();
+    }
+
+    @Override
+    public void addDishToOrder(int clientId, int dishId) {
+        repository.getClientById(clientId).addDishToOrder(dishRepository.getDishById(dishId));
     }
 }

@@ -17,8 +17,16 @@ public class GeneralDishRepository implements DishRepository {
         addDish("Pizza", 40);
         addDish("Kebab", 35.5);
         addDish("King Burger", 38.40);
+        addDish("Hamburger", 18.20);
+        addDish("Cheeseburger", 21.50);
+        addDish("Chicken Roll", 23.80);
+        addDish("French fries", 15.00);
+        addDish("Hamburger menu", 40.40);
+        addDish("Cheeseburger menu", 43.50);
+        addDish("Cola", 8.00);
+        addDish("Fanta", 8.00);
+        addDish("Sprite", 8.00);
     }
-
     @Override
     public List<Dish> getAllDishes() {
         return new ArrayList<>(dishes.values());

@@ -1,11 +1,13 @@
 package deliveryFood.controllers;
 
 
-import deliveryFood.domain.GeneralOrder;
 import deliveryFood.domain.interfaces.Client;
+import deliveryFood.domain.interfaces.Dish;
+import deliveryFood.domain.interfaces.Order;
 import deliveryFood.services.interfaces.ClientService;
 import deliveryFood.services.interfaces.DishService;
 
+import java.util.List;
 import java.util.Scanner;
 //"1. Create new order \n" +
 //                            "2. Add dish to order \n" +
@@ -14,6 +16,7 @@ import java.util.Scanner;
 public class OrderController {
     private ClientService serviceClient;
     private DishService serviceDish;
+    double cost = 0;
 
     public OrderController(ClientService serviceClient, DishService serviceDish) {
         this.serviceClient = serviceClient;
@@ -22,6 +25,7 @@ public class OrderController {
 
     public void addOrder() {
         try {
+
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input client name:");
             String name = scanner.nextLine();
@@ -36,33 +40,51 @@ public class OrderController {
                 client = serviceClient.getClientByName(name);
             }
 
-            GeneralOrder order = new GeneralOrder();
-
             while (true) {
-                //print dishes list:
-                //1 ...
-                //2 ..
-                //3...
-                //0 - закончить заказ
+                List<Dish> availableDishes = serviceDish.getAllAvailableDishes();
+                System.out.println("Choose dish:\n" );
+                availableDishes.forEach(System.out::println);
+                System.out.println("Type 0 to exit and show order cost");
 
-                System.out.println("Type dish id:");
-                int dishid = scanner.nextInt();
-
-                if (dishid == 0) {
-                    break;
-                } else {
+                int dishId = Integer.parseInt(scanner.nextLine());
+                if (dishId != 0) {
+                    int dishAmount;
                     System.out.println("Type dish amount:");
-                    int dishAmount = scanner.nextInt();
+                    dishAmount = Integer.parseInt(scanner.nextLine());
 
-                    //order.addDish(..)
+                    while (dishAmount >= 1) {
+                       client.addDishToOrder(serviceDish.getDishById(dishId));
+                        --dishAmount;
+                    }
+                } else {
+                    cost = client.getCurrentOrder().getTotalPrice();
+                System.out.printf("Your order: \n" + client.getCurrentOrder() + "\n\n");
+                break;
                 }
             }
-
-            client.addOrder(order);
-
+            serviceClient.makeOrder(client.getClientId());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    public void deleteOrderById() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter the client ID:");
+            int clientId = Integer.parseInt(scanner.nextLine());
+            System.out.println("Enter № position of order:");
+            int position = Integer.parseInt(scanner.nextLine());
+            serviceClient.deleteDishFromLastOrderByPosition(clientId, position);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void viewOrder() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the client ID:");
+        int clientId = Integer.parseInt(scanner.nextLine());
+        Order lastOrder = serviceClient.getLastOrder(clientId);
+        System.out.println(lastOrder);
     }
 
 }

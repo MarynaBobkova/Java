@@ -79,7 +79,7 @@ public class ClientController {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input client name:");
             String name = scanner.nextLine();
-            service.deleteClientByName(name);
+            service.restoreClientByName(name);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

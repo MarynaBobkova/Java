@@ -23,8 +23,8 @@ public class GeneralDishService implements DishService {
         }
         repository.addDish(name, price);
     }
-    public void getDishById(int id){
-        repository.getDishById(id);
+    public Dish getDishById(int id){
+       return repository.getDishById(id);
     }
 
     @Override

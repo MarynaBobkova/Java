@@ -10,7 +10,10 @@ public interface Client {
     String getAdress();
     List <Order> getOrders();
     void addOrder(Order currentOrder);
+    List <Dish> makeOrder();
     void setAdress(String adress);
     void setName(String name);
+    void addDishToOrder(Dish dish);
+    Order getCurrentOrder();
 
 }

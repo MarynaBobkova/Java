@@ -22,7 +22,7 @@ public class Application {
         DishService dishService = new GeneralDishService(dishRepository);
         DishController dishController = new DishController(dishService);
         ClientRepository clientRepository = new GeneralClientRepository();
-        ClientService clientService = new GeneralClientService(clientRepository);
+        ClientService clientService = new GeneralClientService(clientRepository, dishRepository);
         ClientController clientController = new ClientController(clientService);
         OrderController orderController = new OrderController(clientService, dishService);
         MainController mainController = new MainController(dishController, clientController, orderController);
@@ -77,13 +77,11 @@ public class Application {
                             .forEach(System.out :: println);
                     break;
                 case 3: //ветка для работы с заказом
-                    
+
                     System.out.println("Choose an operation:\n" +
                             "1. Create new order \n" +
-                            "2. Add dish to order \n" +
-                            "3. Delete dish from order \n"+
-                            "4. Get list all dishes \n"+
-                            "5. Finish order \n");
+                            "2. Delete dish from order \n"+
+                            "3. View order \n");
 
                     int operationNum2 = Integer.parseInt(scanner.nextLine());
 

@@ -1,6 +1,7 @@
 package deliveryFood.services.interfaces;
 
 import deliveryFood.domain.interfaces.Client;
+import deliveryFood.domain.interfaces.Dish;
 import deliveryFood.domain.interfaces.Order;
 
 import java.util.List;
@@ -20,4 +21,10 @@ public interface ClientService {
     int totalClientQuantity();
     int totalOrderQuantity();
     int orderQuantityByClient(int id);
+    List <Dish> makeOrder(int id);
+    void addDishToOrder(int clientId, int dishId);
+    List<Dish> getDishesFromLastOrder(int id);
+    void deleteDishFromLastOrderByPosition(int clientId, int position);
+    Order getLastOrder(int clientId);
+
 }
