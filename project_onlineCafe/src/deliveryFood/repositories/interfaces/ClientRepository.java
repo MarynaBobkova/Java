@@ -9,6 +9,4 @@ public interface ClientRepository {
     void addClient(String name, String adress);
     Client getClientById(int clientId);
     Client getClientByName(String clientName);
-    void setClientById(Client client, int clientId);
-
 }

@@ -25,16 +25,12 @@ public class GeneralClientService implements ClientService {
             throw new IllegalArgumentException("Name can't be empty");
         }
         if (adress == null || adress.isEmpty()) {
-            throw new IllegalArgumentException("Adress can't be empty");
+            throw new IllegalArgumentException("Address can't be empty");
         }
         repository.addClient(name, adress);
     }
     public Client getClientByName(String name) {
         return repository.getClientByName(name);
-    }
-    public List<Dish> getDishesFromLastOrder(int id){
-           List<Order> orders = repository.getClientById(id).getOrders();
-           return orders.get(orders.size()-1).getDishesInOrder();
     }
 
     public Order getLastOrder(int clientId) {
@@ -67,7 +63,6 @@ public class GeneralClientService implements ClientService {
         List<Order> orders = repository.getClientById(clientId).getOrders();
         orders.get(orders.size()-1).getDishesInOrder().remove(position-1);
     }
-
 
     @Override
     public void deleteClientById(int id) {
@@ -108,28 +103,23 @@ public class GeneralClientService implements ClientService {
             client.setName(newName);
         }
     }
-
     @Override
-    public void changeAdress(int id, String newAdress) {
+    public void changeAddress(int id, String newAddress) {
         Client client = repository.getClientById(id);
         if (client != null){
-            client.setName(newAdress);
+            client.setAddress(newAddress);
         }
     }
-
-
     @Override
     public int totalClientQuantity() {
         return repository.getAllClients().size();
     }
-
     @Override
     public int totalOrderQuantity() {
         return repository.getAllClients().stream()
                 .mapToInt(x -> x.getOrders().size())
                 .sum();
     }
-
     @Override
     public int orderQuantityByClient(int id) {
         return getAllOrdersByClientById(id).size();
@@ -140,8 +130,4 @@ public class GeneralClientService implements ClientService {
         return repository.getClientById(clientId).makeOrder();
     }
 
-    @Override
-    public void addDishToOrder(int clientId, int dishId) {
-        repository.getClientById(clientId).addDishToOrder(dishRepository.getDishById(dishId));
-    }
 }

@@ -5,12 +5,10 @@ import deliveryFood.domain.interfaces.Order;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
 public class GeneralOrder implements Order {
-
     private int id;
     private int clientId;
     private LocalDateTime dateTime;
@@ -18,16 +16,6 @@ public class GeneralOrder implements Order {
 
     public GeneralOrder() {
         dateTime = LocalDateTime.now();
-    }
-
-    @Override
-    public int getOrderId() {
-        return id;
-    }
-
-    @Override
-    public int getClientId() {
-        return clientId;
     }
 
     @Override
@@ -41,43 +29,12 @@ public class GeneralOrder implements Order {
     }
 
     @Override
-    public boolean deleteDishById(int id) {
-        Iterator<Dish> iterator = dishes.iterator();
-        while (iterator.hasNext()){
-            if (iterator.next().getId() == id){
-                iterator.remove();
-                return true;
-            }
-        }
-        return false;
-    }
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    @Override
-    public void clear() {
-        dishes.clear();
-    }
-
-    @Override
     public double getTotalPrice() {
         return dishes.stream()
                 .map(Dish::getPrice)
                 .reduce((x, y) -> x + y)
                 .orElse(0.0);
     }
-
-    @Override
-    public double getAveragePrice() {
-        double averagePrice = dishes.stream()
-                .map(Dish::getPrice)
-                .mapToDouble(x -> x)
-                .average()
-                .orElse(0);
-        return averagePrice;
-    }
-
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;

@@ -43,27 +43,17 @@ public class GeneralClient implements Client {
         return name;
     }
 
-    @Override
-    public String getAdress() {
-        return adress;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
-    public void setAdress(String adress) {
+    public void setAddress(String adress) {
         this.adress = adress;
     }
 
     @Override
-    public void addDishToOrder(Dish dish) {
-        currentOrder.addDishToOrder(dish);
-    }
-
-    public void addOrder(Order order){
-        currentOrder = order;
-        orders.add(currentOrder);
-    }
+   public void addDishToOrder(Dish dish) {
+   currentOrder.addDishToOrder(dish);
+   }
 
     @Override
     public List<Dish> makeOrder() {

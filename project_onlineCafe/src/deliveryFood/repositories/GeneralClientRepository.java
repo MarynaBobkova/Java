@@ -48,11 +48,4 @@ public class GeneralClientRepository implements ClientRepository {
     public Client getClientByName(String clientName) {
         return clients.values().stream().filter(x -> x.getName().equals(clientName)).findFirst().orElse(null);
     }
-
-    @Override
-    public void setClientById(Client client, int id) {
-        clients.put(id, client);
-    }
-
-
 }

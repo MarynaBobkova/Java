@@ -15,6 +15,5 @@ public interface DishRepository {
     void addDish(String name, double price);
     Dish getDishById(int id);
     Dish getDishByName(String name);
-    void setDishById(Dish dish, int id);
 
 }

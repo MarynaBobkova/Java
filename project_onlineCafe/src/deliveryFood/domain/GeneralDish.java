@@ -24,8 +24,6 @@ public class GeneralDish implements Dish {
         this.id = id;
     }
 
-
-
     @Override
     public boolean isAvailable() {
         return isAvailable;
@@ -83,10 +81,10 @@ public class GeneralDish implements Dish {
                         " %s, price - %.2f, is active - %s.",
                 id , name, price, isAvailable ? "yes" : "no");
     }
+
     @Override
     public String toStringOrder() {
         return String.format(" %s, price - %.2f",
                 name, price);
     };
-
 }

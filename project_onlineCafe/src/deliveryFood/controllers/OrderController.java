@@ -29,16 +29,16 @@ public class OrderController {
             Client client = serviceClient.getClientByName(name);
 
             if (client == null) {
-                System.out.println("Input client adress:");
-                String adress = scanner.nextLine();
-                serviceClient.addClient(name, adress);
+                System.out.println("Input client address:");
+                String address = scanner.nextLine();
+                serviceClient.addClient(name, address);
 
                 client = serviceClient.getClientByName(name);
             }
 
             while (true) {
                 List<Dish> availableDishes = serviceDish.getAllAvailableDishes();
-                System.out.println("Choose dish:\n" );
+                System.out.println("Type № to select a dish:\n" );
                 availableDishes.forEach(System.out::println);
                 System.out.println("Type 0 to exit and show order cost");
 
@@ -49,7 +49,7 @@ public class OrderController {
                     dishAmount = Integer.parseInt(scanner.nextLine());
 
                     while (dishAmount >= 1) {
-                       client.addDishToOrder(serviceDish.getDishById(dishId));
+                        client.addDishToOrder(serviceDish.getDishById(dishId));
                         --dishAmount;
                     }
                 } else {
@@ -63,7 +63,7 @@ public class OrderController {
             throw new RuntimeException(e);
         }
     }
-    public void deleteOrderById() {
+    public void deleteDishFromOrderByPosition() {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter the client ID:");
@@ -82,5 +82,4 @@ public class OrderController {
         Order lastOrder = serviceClient.getLastOrder(clientId);
         System.out.println(lastOrder);
     }
-
 }

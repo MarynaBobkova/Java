@@ -66,7 +66,7 @@ public class Application {
                             "7. Restore client by id \n" +
                             "8. Restore client by name \n" +
                             "9. Change client name \n" +
-                            "10. Change client adress \n" +
+                            "10. Change client address \n" +
                             "11. Get total clients quantity \n" +
                             "12. Get total orders quantity \n"  +
                             "13. Get total orders by client \n");

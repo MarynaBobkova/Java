@@ -18,10 +18,10 @@ public class ClientController {
             System.out.println("Input client name:");
             String name = scanner.nextLine();
 
-            System.out.println("Input client adress:");
-            String adress = scanner.nextLine();
+            System.out.println("Input client address:");
+            String address = scanner.nextLine();
 
-            service.addClient(name, adress);
+            service.addClient(name, address);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -33,7 +33,6 @@ public class ClientController {
     public List<Client> getAllClients() {
         return service.getAllClients();
     }
-
     public List<Order> getAllOrdersByClientById() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -44,6 +43,7 @@ public class ClientController {
             throw new RuntimeException(e);
         }
     }
+
     public void deleteClientById(){
         try {
             Scanner scanner = new Scanner(System.in);
@@ -54,6 +54,7 @@ public class ClientController {
             throw new RuntimeException(e);
         }
     }
+
     public void deleteClientByName(){
         try {
             Scanner scanner = new Scanner(System.in);
@@ -64,6 +65,7 @@ public class ClientController {
             throw new RuntimeException(e);
         }
     }
+
     public void restoreClientById(){
         try {
             Scanner scanner = new Scanner(System.in);
@@ -74,6 +76,7 @@ public class ClientController {
             throw new RuntimeException(e);
         }
     }
+
     public void restoreClientByName(){
         try {
             Scanner scanner = new Scanner(System.in);
@@ -84,6 +87,7 @@ public class ClientController {
             throw new RuntimeException(e);
         }
     }
+
     public void changeName(){
         try {
             Scanner scanner = new Scanner(System.in);
@@ -96,14 +100,15 @@ public class ClientController {
             throw new RuntimeException(e);
         }
     }
-    public void changeAdress(){
+
+    public void changeAddress(){
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input client id:");
             int id = Integer.parseInt(scanner.nextLine());
-            System.out.println("Input client new adress:");
-            String adress = scanner.nextLine();
-            service.changeAdress(id, adress);
+            System.out.println("Input client new address:");
+            String address = scanner.nextLine();
+            service.changeAddress(id, address);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -111,9 +116,11 @@ public class ClientController {
     public int totalClientQuantity(){
         return service.totalClientQuantity();
     }
+
     public int totalOrderQuantity(){
         return service.totalOrderQuantity();
     }
+
     public int orderQuantityByClient(){
         try {
             Scanner scanner = new Scanner(System.in);

@@ -17,13 +17,11 @@ public interface ClientService {
     void restoreClientById(int id);
     void restoreClientByName(String name);
     void changeName(int id, String newName);
-    void changeAdress(int id, String newAdress);
+    void changeAddress(int id, String newAdress);
     int totalClientQuantity();
     int totalOrderQuantity();
     int orderQuantityByClient(int id);
     List <Dish> makeOrder(int id);
-    void addDishToOrder(int clientId, int dishId);
-    List<Dish> getDishesFromLastOrder(int id);
     void deleteDishFromLastOrderByPosition(int clientId, int position);
     Order getLastOrder(int clientId);
 

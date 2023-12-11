@@ -52,10 +52,4 @@ public class GeneralDishRepository implements DishRepository {
                .findFirst()
                .orElse(null);
     }
-
-    @Override
-    public void setDishById(Dish dish, int id) {
-
-        dishes.put(id, dish);
-    }
 }

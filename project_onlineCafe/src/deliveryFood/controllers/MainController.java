@@ -62,7 +62,7 @@ public class MainController {
                             break;
                     }
 
-                case 2: // Эта ветка для работы с покупателями // Здесь мы бы вызывали контроллер покупателя
+                case 2: // Эта ветка для работы с клиент // Здесь мы бы вызывали контроллер клиент
                     switch (operationNum){
                         case 1:
                             clientController.addClient();
@@ -92,7 +92,7 @@ public class MainController {
                             clientController.changeName();
                             return result;
                         case 10:
-                            clientController.changeAdress();
+                            clientController.changeAddress();
                             return result;
                         case 11:
                             int result1 = clientController.totalClientQuantity();
@@ -116,7 +116,7 @@ public class MainController {
                         return result;
 
                     case 2:
-                        orderController.deleteOrderById();
+                        orderController.deleteDishFromOrderByPosition();
                         return result;
 
                     case 3:
