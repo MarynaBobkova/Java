@@ -8,7 +8,7 @@ public interface Client {
     String getName();
     List <Order> getOrders();
     List <Dish> makeOrder();
-    void setAddress(String adress);
+    void setAddress(String address);
     void setName(String name);
     void addDishToOrder(Dish dish);
     Order getCurrentOrder();

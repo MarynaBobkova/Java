@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class GeneralOrder implements Order {
-    private int id;
-    private int clientId;
     private LocalDateTime dateTime;
     private List<Dish> dishes = new ArrayList<>();
 
@@ -35,6 +33,7 @@ public class GeneralOrder implements Order {
                 .reduce((x, y) -> x + y)
                 .orElse(0.0);
     }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
@@ -42,17 +41,13 @@ public class GeneralOrder implements Order {
 
         GeneralOrder that = (GeneralOrder) object;
 
-        if (id != that.id) return false;
-        if (clientId != that.clientId) return false;
         if (!Objects.equals(dateTime, that.dateTime)) return false;
         return Objects.equals(dishes, that.dishes);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + clientId;
-        result = 31 * result + (dateTime != null ? dateTime.hashCode() : 0);
+        int result = dateTime != null ? dateTime.hashCode() : 0;
         result = 31 * result + (dishes != null ? dishes.hashCode() : 0);
         return result;
     }

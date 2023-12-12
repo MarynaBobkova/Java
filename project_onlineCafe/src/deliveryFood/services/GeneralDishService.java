@@ -24,7 +24,9 @@ public class GeneralDishService implements DishService {
         repository.addDish(name, price);
     }
     public Dish getDishById(int id){
-       return repository.getDishById(id);
+        Dish dish = repository.getDishById(id);
+        if (dish.isAvailable()) throw new IllegalArgumentException("Dish not found");
+           return repository.getDishById(id);
     }
 
     @Override
@@ -43,45 +45,40 @@ public class GeneralDishService implements DishService {
     @Override
     public void deleteDishById(int id) {
         Dish dish = repository.getDishById(id);
-        if (dish != null){
-            dish.setAvailable(false);
-        }
+        if (dish == null) throw new IllegalArgumentException("Dish not found");
+        dish.setAvailable(false);
     }
     @Override
     public void deleteDishByName(String name) {
         Dish dish = repository.getDishByName(name);
-        if (dish != null) {
-            dish.setAvailable(false);
-        }
+        if (dish == null) throw new IllegalArgumentException("Dish not found");
+        dish.setAvailable(false);
     }
     @Override
     public void restoreDishById(int id) {
         Dish dish = repository.getDishById(id);
-        if (dish != null){
-            dish.setAvailable(true);
-        }
+        if (dish == null) throw new IllegalArgumentException("Dish not found");
+        dish.setAvailable(true);
     }
 
     @Override
     public void restoreDishByName(String name) {
         Dish dish = repository.getDishByName(name);
-        if (dish != null) {
-            dish.setAvailable(true);
-        }
+        if (dish == null) throw new IllegalArgumentException("Dish not found");
+        dish.setAvailable(true);
+
     }
     @Override
     public void changePrice(int id, double newPrice) {
         Dish dish = repository.getDishById(id);
-        if(dish != null) {
-            dish.setPrice(newPrice);
-        }
+        if (dish == null) throw new IllegalArgumentException("Dish not found");
+        dish.setPrice(newPrice);
     }
     @Override
     public void changeName(int id, String newName) {
         Dish dish = repository.getDishById(id);
-        if(dish != null) {
-            dish.setName(newName);
-        }
+        if (dish == null) throw new IllegalArgumentException("Dish not found");
+        dish.setName(newName);
     }
     @Override
     public int totalDishesQuantity() {

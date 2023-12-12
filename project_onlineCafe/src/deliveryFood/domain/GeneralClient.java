@@ -12,15 +12,15 @@ public class GeneralClient implements Client {
     private int clientId;
     private boolean isAvailable;
     private String name;
-    private String adress;
+    private String address;
     private Order currentOrder;
     private List<Order> orders = new ArrayList<>();
 
 
-    public GeneralClient(String name, String adress) {
+    public GeneralClient(String name, String address) {
         currentOrder = new GeneralOrder();
         this.name = name;
-        this.adress = adress;
+        this.address = address;
         this.isAvailable = true;
     }
 
@@ -46,13 +46,16 @@ public class GeneralClient implements Client {
     public void setName(String name) {
         this.name = name;
     }
-    public void setAddress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
    public void addDishToOrder(Dish dish) {
-   currentOrder.addDishToOrder(dish);
+        if (dish.isAvailable()) {
+            currentOrder.addDishToOrder(dish);
+        }
+        throw new IllegalArgumentException("Dish or Client not available");
    }
 
     @Override
@@ -86,7 +89,7 @@ public class GeneralClient implements Client {
         if (clientId != client.clientId) return false;
         if (isAvailable != client.isAvailable) return false;
         if (!Objects.equals(name, client.name)) return false;
-        if (!Objects.equals(adress, client.adress)) return false;
+        if (!Objects.equals(address, client.address)) return false;
         if (!Objects.equals(currentOrder, client.currentOrder))
             return false;
         return Objects.equals(orders, client.orders);
@@ -97,7 +100,7 @@ public class GeneralClient implements Client {
         int result = clientId;
         result = 31 * result + (isAvailable ? 1 : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (adress != null ? adress.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (currentOrder != null ? currentOrder.hashCode() : 0);
         result = 31 * result + (orders != null ? orders.hashCode() : 0);
         return result;
@@ -106,7 +109,7 @@ public class GeneralClient implements Client {
     @Override
     public String toString() {
         return String.format("id - %d, " +
-                        "name - %s, adress - %s, available - %s.",
-                clientId , name, adress, isAvailable ? "yes" : "no");
+                        "name - %s, address - %s, available - %s.",
+                clientId , name, address, isAvailable ? "yes" : "no");
     }
 }

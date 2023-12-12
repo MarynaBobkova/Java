@@ -4,7 +4,6 @@ import deliveryFood.domain.interfaces.Client;
 import deliveryFood.domain.interfaces.Dish;
 import deliveryFood.domain.interfaces.Order;
 import deliveryFood.repositories.interfaces.ClientRepository;
-import deliveryFood.repositories.interfaces.DishRepository;
 import deliveryFood.services.interfaces.ClientService;
 
 import java.util.List;
@@ -12,22 +11,20 @@ import java.util.stream.Collectors;
 
 public class GeneralClientService implements ClientService {
     private ClientRepository repository;
-    private DishRepository dishRepository;
 
-    public GeneralClientService(ClientRepository repository, DishRepository dishRepository) {
+    public GeneralClientService(ClientRepository repository) {
         this.repository = repository;
-        this.dishRepository = dishRepository;
     }
 
     @Override
-    public void addClient(String name, String adress) {
+    public void addClient(String name, String address) {
         if(name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name can't be empty");
         }
-        if (adress == null || adress.isEmpty()) {
+        if (address == null || address.isEmpty()) {
             throw new IllegalArgumentException("Address can't be empty");
         }
-        repository.addClient(name, adress);
+        repository.addClient(name, address);
     }
     public Client getClientByName(String name) {
         return repository.getClientByName(name);
@@ -35,7 +32,10 @@ public class GeneralClientService implements ClientService {
 
     public Order getLastOrder(int clientId) {
         List<Order> orders = repository.getClientById(clientId).getOrders();
-        return orders.get(orders.size()-1);
+        Client client = repository.getClientById(clientId);
+        if (client == null) throw new IllegalArgumentException("Client not found");
+        return orders.get(orders.size() - 1);
+
     }
 
     @Override
@@ -54,61 +54,56 @@ public class GeneralClientService implements ClientService {
     @Override
     public List<Order> getAllOrdersByClientById(int id) {
         Client client = repository.getClientById(id);
-        if (client != null) {
-            return client.getOrders();
-        }
-        throw new IllegalArgumentException("Client by id not found");
+        if (client == null) throw new IllegalArgumentException("Client not found");
+        return client.getOrders();
     }
     public void deleteDishFromLastOrderByPosition(int clientId, int position) {
         List<Order> orders = repository.getClientById(clientId).getOrders();
+        Client client = repository.getClientById(clientId);
+        if (client == null) throw new IllegalArgumentException("Client not found");
         orders.get(orders.size()-1).getDishesInOrder().remove(position-1);
+
     }
 
     @Override
     public void deleteClientById(int id) {
         Client client = repository.getClientById(id);
-        if (client != null){
-            client.setAvailable(false);
-        }
+        if (client == null) throw new IllegalArgumentException("Client not found");
+        client.setAvailable(false);
     }
 
     @Override
     public void deleteClientByName(String name) {
         Client client = repository.getClientByName(name);
-        if (client != null){
-            client.setAvailable(false);
+        if (client == null) throw new IllegalArgumentException("Client not found");
+        client.setAvailable(false);
         }
-    }
 
     @Override
     public void restoreClientById(int id) {
         Client client = repository.getClientById(id);
-        if (client != null){
+        if (client == null) throw new IllegalArgumentException("Client not found");
             client.setAvailable(true);
-        }
     }
 
     @Override
     public void restoreClientByName(String name) {
         Client client = repository.getClientByName(name);
-        if (client != null){
+        if (client == null) throw new IllegalArgumentException("Client not found");
             client.setAvailable(true);
-        }
     }
 
     @Override
     public void changeName(int id, String newName) {
         Client client = repository.getClientById(id);
-        if (client != null){
+        if (client == null) throw new IllegalArgumentException("Client not found");
             client.setName(newName);
-        }
     }
     @Override
     public void changeAddress(int id, String newAddress) {
         Client client = repository.getClientById(id);
-        if (client != null){
+        if (client == null) throw new IllegalArgumentException("Client not found");
             client.setAddress(newAddress);
-        }
     }
     @Override
     public int totalClientQuantity() {
@@ -122,12 +117,15 @@ public class GeneralClientService implements ClientService {
     }
     @Override
     public int orderQuantityByClient(int id) {
-        return getAllOrdersByClientById(id).size();
+        Client client = repository.getClientById(id);
+        if (client == null) throw new IllegalArgumentException("Client not found");
+            return getAllOrdersByClientById(id).size();
     }
 
     @Override
     public List<Dish> makeOrder(int clientId) {
+        Client client = repository.getClientById(clientId);
+        if (client == null) throw new IllegalArgumentException("Client not found");
         return repository.getClientById(clientId).makeOrder();
     }
-
 }

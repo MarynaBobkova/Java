@@ -27,35 +27,37 @@ public class OrderController {
             String name = scanner.nextLine();
 
             Client client = serviceClient.getClientByName(name);
+            if(!client.isAvailable()) {
+                throw new IllegalArgumentException("Client not available");
+            } else {
 
-            if (client == null) {
+             if (client == null) {
                 System.out.println("Input client address:");
                 String address = scanner.nextLine();
                 serviceClient.addClient(name, address);
-
                 client = serviceClient.getClientByName(name);
-            }
+                }
+                while (true) {
+                    List<Dish> availableDishes = serviceDish.getAllAvailableDishes();
+                    System.out.println("Type № to select a dish:\n");
+                    availableDishes.forEach(System.out::println);
+                    System.out.println("Type 0 to exit and show order cost");
 
-            while (true) {
-                List<Dish> availableDishes = serviceDish.getAllAvailableDishes();
-                System.out.println("Type № to select a dish:\n" );
-                availableDishes.forEach(System.out::println);
-                System.out.println("Type 0 to exit and show order cost");
+                    int dishId = Integer.parseInt(scanner.nextLine());
+                    if (dishId != 0) {
+                        int dishAmount;
+                        System.out.println("Type dish amount:");
+                        dishAmount = Integer.parseInt(scanner.nextLine());
 
-                int dishId = Integer.parseInt(scanner.nextLine());
-                if (dishId != 0) {
-                    int dishAmount;
-                    System.out.println("Type dish amount:");
-                    dishAmount = Integer.parseInt(scanner.nextLine());
-
-                    while (dishAmount >= 1) {
-                        client.addDishToOrder(serviceDish.getDishById(dishId));
-                        --dishAmount;
+                        while (dishAmount >= 1) {
+                            client.addDishToOrder(serviceDish.getDishById(dishId));
+                            --dishAmount;
+                        }
+                    } else {
+                        cost = client.getCurrentOrder().getTotalPrice();
+                        System.out.printf("Your order: \n" + client.getCurrentOrder() + "\n\n");
+                        break;
                     }
-                } else {
-                    cost = client.getCurrentOrder().getTotalPrice();
-                System.out.printf("Your order: \n" + client.getCurrentOrder() + "\n\n");
-                break;
                 }
             }
             serviceClient.makeOrder(client.getClientId());

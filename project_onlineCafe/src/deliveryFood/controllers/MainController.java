@@ -16,7 +16,7 @@ public class MainController {
 
     public List<Object> sendRequest(String query) {
 
-        try { // "2 3"
+        // "2 3"
             String[] parts = query.split(" "); // "2 3" -> ["2", "3"]
             int objectNum = Integer.parseInt(parts[0]); // ["2", "3"] -> "2" -> 2
             int operationNum = Integer.parseInt(parts[1]); // ["2", "3"] -> "3" -> 3
@@ -130,10 +130,6 @@ public class MainController {
             }
             return result;
 
-        } catch (Exception e) {
-            System.out.println("An error has occurred in the main controller!");
-            throw new RuntimeException(e);
-        }
     }
 }
 
