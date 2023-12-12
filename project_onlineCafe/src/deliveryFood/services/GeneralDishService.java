@@ -25,8 +25,8 @@ public class GeneralDishService implements DishService {
     }
     public Dish getDishById(int id){
         Dish dish = repository.getDishById(id);
-        if (dish.isAvailable()) throw new IllegalArgumentException("Dish not found");
-           return repository.getDishById(id);
+        if (dish == null) throw new IllegalArgumentException("Dish not found");
+        return repository.getDishById(id);
     }
 
     @Override

@@ -96,7 +96,7 @@ public class Application {
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Incorrect input");
+                System.out.println("Error" + e);
             }
         }
     }

@@ -39,7 +39,7 @@ public class OrderController {
                 }
                 while (true) {
                     List<Dish> availableDishes = serviceDish.getAllAvailableDishes();
-                    System.out.println("Type № to select a dish:\n");
+                    System.out.println("Type number to select a dish:\n");
                     availableDishes.forEach(System.out::println);
                     System.out.println("Type 0 to exit and show order cost");
 
@@ -66,20 +66,16 @@ public class OrderController {
         }
     }
     public void deleteDishFromOrderByPosition() {
-        try {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter the client ID:");
+            System.out.println("Enter the client id:");
             int clientId = Integer.parseInt(scanner.nextLine());
-            System.out.println("Enter № position of order:");
+            System.out.println("Enter number position of order:");
             int position = Integer.parseInt(scanner.nextLine());
             serviceClient.deleteDishFromLastOrderByPosition(clientId, position);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
     public void viewOrder() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the client ID:");
+        System.out.println("Enter the client id:");
         int clientId = Integer.parseInt(scanner.nextLine());
         Order lastOrder = serviceClient.getLastOrder(clientId);
         System.out.println(lastOrder);

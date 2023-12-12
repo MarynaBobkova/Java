@@ -89,29 +89,21 @@ public class ClientController {
     }
 
     public void changeName(){
-        try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input client id:");
             int id = Integer.parseInt(scanner.nextLine());
             System.out.println("Input client new name:");
             String name = scanner.nextLine();
             service.changeName(id, name);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void changeAddress(){
-        try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input client id:");
             int id = Integer.parseInt(scanner.nextLine());
             System.out.println("Input client new address:");
             String address = scanner.nextLine();
             service.changeAddress(id, address);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
     public int totalClientQuantity(){
         return service.totalClientQuantity();

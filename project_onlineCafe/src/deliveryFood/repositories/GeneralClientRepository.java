@@ -28,8 +28,8 @@ public class GeneralClientRepository implements ClientRepository {
     }
 
     @Override
-    public void addClient(String name, String adress) {
-        GeneralClient client = new GeneralClient(name, adress);
+    public void addClient(String name, String address) {
+        GeneralClient client = new GeneralClient(name, address);
         client.setClientId(++currentId);
         clients.put(currentId, client);
     }

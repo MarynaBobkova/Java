@@ -52,10 +52,8 @@ public class GeneralClient implements Client {
 
     @Override
    public void addDishToOrder(Dish dish) {
-        if (dish.isAvailable()) {
-            currentOrder.addDishToOrder(dish);
-        }
-        throw new IllegalArgumentException("Dish or Client not available");
+        if (!dish.isAvailable()) throw new IllegalArgumentException("Dish not available");
+        currentOrder.addDishToOrder(dish);
    }
 
     @Override

@@ -12,7 +12,6 @@ public class DishController {
         this.service = service;
     }
     public void addDish() {
-        try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input dish name:");
             String name = scanner.nextLine();
@@ -21,9 +20,6 @@ public class DishController {
             double price = Double.parseDouble(scanner.nextLine());
 
             service.addDish(name, price);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public List<Dish> getAllDishes() {
@@ -35,51 +31,40 @@ public class DishController {
     }
 
     public void deleteDishById() {
-        try{
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Input dish Id:");
+            System.out.println("Input dish id:");
             int dishId = Integer.parseInt(scanner.nextLine());
             service.deleteDishById(dishId);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void deleteDishByName() {
-        try{
+
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input dish name:");
             String dishName = scanner.nextLine();
             service.deleteDishByName(dishName);
-        } catch (Exception e) {
-        throw new RuntimeException(e);
-        }
+
     }
 
     public void restoreDishById() {
-        try{
+
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Input dish Id:");
+            System.out.println("Input dish id:");
             int dishId = Integer.parseInt(scanner.nextLine());
             service.restoreDishById(dishId);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     public void restoreDishByName() {
-        try{
+
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input dish name:");
             String dishName = scanner.nextLine();
             service.restoreDishByName(dishName);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     public void changePrice() {
-        try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input dish id:");
             int dishId = Integer.parseInt(scanner.nextLine());
@@ -88,23 +73,19 @@ public class DishController {
             double price = Double.parseDouble(scanner.nextLine());
 
             service.changePrice(dishId, price);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     public void changeName() {
-        try {
+
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input dish id:");
             int dishId = Integer.parseInt(scanner.nextLine());
 
-            System.out.println("Input dish  new name:");
+            System.out.println("Input dish new name:");
             String dishName = scanner.nextLine();
             service.changeName(dishId, dishName);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     public int totalDishesQuantity() {
