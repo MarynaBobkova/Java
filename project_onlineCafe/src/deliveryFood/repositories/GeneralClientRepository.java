@@ -19,7 +19,6 @@ public class GeneralClientRepository implements ClientRepository {
         addClient("Petrov", "Potsdamstr. 20, Berlin");
         addClient("Smirnov", "Hagenerstr. 8, Berlin");
         addClient("Zuev", "Sennigerstr. 16, Berlin");
-
     }
 
     @Override

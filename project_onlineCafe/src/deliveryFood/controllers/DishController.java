@@ -38,30 +38,24 @@ public class DishController {
     }
 
     public void deleteDishByName() {
-
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input dish name:");
             String dishName = scanner.nextLine();
             service.deleteDishByName(dishName);
-
     }
 
     public void restoreDishById() {
-
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input dish id:");
             int dishId = Integer.parseInt(scanner.nextLine());
             service.restoreDishById(dishId);
-
     }
 
     public void restoreDishByName() {
-
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input dish name:");
             String dishName = scanner.nextLine();
             service.restoreDishByName(dishName);
-
     }
 
     public void changePrice() {
@@ -73,11 +67,9 @@ public class DishController {
             double price = Double.parseDouble(scanner.nextLine());
 
             service.changePrice(dishId, price);
-
     }
 
     public void changeName() {
-
             Scanner scanner = new Scanner(System.in);
             System.out.println("Input dish id:");
             int dishId = Integer.parseInt(scanner.nextLine());
@@ -85,7 +77,6 @@ public class DishController {
             System.out.println("Input dish new name:");
             String dishName = scanner.nextLine();
             service.changeName(dishId, dishName);
-
     }
 
     public int totalDishesQuantity() {

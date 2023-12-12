@@ -83,27 +83,27 @@ public class GeneralClientService implements ClientService {
     public void restoreClientById(int id) {
         Client client = repository.getClientById(id);
         if (client == null) throw new IllegalArgumentException("Client not found");
-            client.setAvailable(true);
+        client.setAvailable(true);
     }
 
     @Override
     public void restoreClientByName(String name) {
         Client client = repository.getClientByName(name);
         if (client == null) throw new IllegalArgumentException("Client not found");
-            client.setAvailable(true);
+        client.setAvailable(true);
     }
 
     @Override
     public void changeName(int id, String newName) {
         Client client = repository.getClientById(id);
         if (client == null) throw new IllegalArgumentException("Client not found");
-            client.setName(newName);
+        client.setName(newName);
     }
     @Override
     public void changeAddress(int id, String newAddress) {
         Client client = repository.getClientById(id);
         if (client == null) throw new IllegalArgumentException("Client not found");
-            client.setAddress(newAddress);
+        client.setAddress(newAddress);
     }
     @Override
     public int totalClientQuantity() {
@@ -119,7 +119,7 @@ public class GeneralClientService implements ClientService {
     public int orderQuantityByClient(int id) {
         Client client = repository.getClientById(id);
         if (client == null) throw new IllegalArgumentException("Client not found");
-            return getAllOrdersByClientById(id).size();
+        return getAllOrdersByClientById(id).size();
     }
 
     @Override

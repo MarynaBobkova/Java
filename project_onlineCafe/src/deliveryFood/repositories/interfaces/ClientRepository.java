@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ClientRepository {
     List<Client> getAllClients();
-    void addClient(String name, String adress);
+    void addClient(String name, String address);
     Client getClientById(int clientId);
     Client getClientByName(String clientName);
 }

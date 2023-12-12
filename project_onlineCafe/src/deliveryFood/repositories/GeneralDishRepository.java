@@ -37,7 +37,6 @@ public class GeneralDishRepository implements DishRepository {
         GeneralDish dish = new GeneralDish(name, price);
         dish.setId(++currentId);
         dishes.put(currentId, dish);
-
     }
 
     @Override
