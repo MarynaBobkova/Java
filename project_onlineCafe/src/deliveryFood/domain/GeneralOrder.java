@@ -59,7 +59,7 @@ public class GeneralOrder implements Order {
         for (int i = 0; i < dishes.size(); i++) {
             builder.append("N.").append(i+1).append(" ").append(dishes.get(i).toStringOrder()).append("\n");
         }
-        builder.append("Total amount: " + getTotalPrice());
+        builder.append(String.format("Total amount: %.2f", getTotalPrice()));
           return builder.toString();
     }
 }

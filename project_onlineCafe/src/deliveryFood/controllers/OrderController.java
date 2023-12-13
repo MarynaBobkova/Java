@@ -56,6 +56,11 @@ public class OrderController {
                     } else {
                         cost = client.getCurrentOrder().getTotalPrice();
                         System.out.printf("Your order: \n" + client.getCurrentOrder() + "\n\n");
+                        if(client.isVip()){
+                            cost = cost * 0.8;
+                            System.out.printf("Congratulations! You make more 5 orders!\nYou have discount 20%%\n" + "Total amount -20%% : %.2f", cost);
+                            System.out.println("\n");
+                        }
                         break;
                     }
                 }

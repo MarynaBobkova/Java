@@ -34,6 +34,11 @@ public class GeneralClient implements Client {
         return isAvailable;
     }
 
+    @Override
+    public boolean isVip() {
+        return orders.size() > 1;
+    }
+
     public void setAvailable(boolean available) {
         isAvailable = available;
     }

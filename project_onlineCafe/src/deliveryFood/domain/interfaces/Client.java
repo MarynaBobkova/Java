@@ -4,6 +4,7 @@ import java.util.List;
 public interface Client {
     int getClientId();
     boolean isAvailable();
+    boolean isVip();
     void setAvailable(boolean available);
     String getName();
     List <Order> getOrders();
