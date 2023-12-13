@@ -30,6 +30,9 @@ public class ClientController {
     public List<Client> getAllAvailableClients() {
         return service.getAllAvailableClients();
     }
+    public List<Client> getAllVipClients() {
+        return service.getAllVipClients();
+    }
     public List<Client> getAllClients() {
         return service.getAllClients();
     }
@@ -108,7 +111,9 @@ public class ClientController {
     public int totalClientQuantity(){
         return service.totalClientQuantity();
     }
-
+    public int totalVipClientQuantity(){
+        return service.totalVipClientQuantity();
+    }
     public int totalOrderQuantity(){
         return service.totalOrderQuantity();
     }

@@ -35,7 +35,6 @@ public class GeneralClientService implements ClientService {
         Client client = repository.getClientById(clientId);
         if (client == null) throw new IllegalArgumentException("Client not found");
         return orders.get(orders.size() - 1);
-
     }
 
     @Override
@@ -44,6 +43,17 @@ public class GeneralClientService implements ClientService {
                 .stream()
                 .filter(x -> x.isAvailable())
                 .collect(Collectors.toList());
+    }
+    @Override
+    public List<Client> getAllVipClients() {
+        List<Client> vip =  repository.getAllClients()
+                .stream()
+                .filter(x -> x.isVip())
+                .collect(Collectors.toList());
+        if(vip.isEmpty()){
+            System.out.println("VIP clients are absent \n");
+        }
+        return vip;
     }
 
     @Override
@@ -108,6 +118,10 @@ public class GeneralClientService implements ClientService {
     @Override
     public int totalClientQuantity() {
         return repository.getAllClients().size();
+    }
+    @Override
+    public int totalVipClientQuantity() {
+        return getAllVipClients().size();
     }
     @Override
     public int totalOrderQuantity() {

@@ -55,27 +55,31 @@ public class Application {
 
                         mainController.sendRequest(objectNum + " " + operationNum)
                                 .forEach(System.out :: println);
+                        System.out.println();
                         break;
                     case 2: //ветка для работы с клиентом
                         System.out.println("Choose an operation:\n" +
                                 "1. Create new client \n" +
                                 "2. Get list all clients \n" +
                                 "3. Get list all available clients \n"+
-                                "4. Get list all orders by client \n"+
-                                "5. Delete client by id \n" +
-                                "6. Delete client by name \n" +
-                                "7. Restore client by id \n" +
-                                "8. Restore client by name \n" +
-                                "9. Change client name \n" +
-                                "10. Change client address \n" +
-                                "11. Get total clients quantity \n" +
-                                "12. Get total orders quantity \n"  +
-                                "13. Get total orders by client \n");
+                                "4. Get list all VIP clients \n"+
+                                "5. Get list all orders by client \n"+
+                                "6. Delete client by id \n" +
+                                "7. Delete client by name \n" +
+                                "8. Restore client by id \n" +
+                                "9. Restore client by name \n" +
+                                "10. Change client name \n" +
+                                "11. Change client address \n" +
+                                "12. Get total clients quantity \n" +
+                                "13. Get total VIP clients quantity \n" +
+                                "14. Get total orders quantity \n"  +
+                                "15. Get total orders by client \n");
 
                         int operationNum1 = Integer.parseInt(scanner.nextLine());
 
                         mainController.sendRequest(objectNum + " " + operationNum1)
                                 .forEach(System.out :: println);
+                        System.out.println();
                         break;
                     case 3: //ветка для работы с заказом
 
@@ -88,6 +92,7 @@ public class Application {
 
                         mainController.sendRequest(objectNum + " " + operationNum2)
                                 .forEach(System.out :: println);
+                        System.out.println();
                         break;
                     case 0:
                         return;
