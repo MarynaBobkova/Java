@@ -36,7 +36,7 @@ public class GeneralClient implements Client {
 
     @Override
     public boolean isVip() {
-        return orders.size() > 1;
+        return orders.size() > 4;
     }
 
     public void setAvailable(boolean available) {
