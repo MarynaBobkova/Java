@@ -5,6 +5,7 @@ import shop.domain.interfaces.Product;
 import java.util.Objects;
 
 public class CommonProduct implements Product {
+
     private int id;
     private boolean isActive;
     private String name;
@@ -16,13 +17,13 @@ public class CommonProduct implements Product {
         this.isActive = true;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override
@@ -41,34 +42,22 @@ public class CommonProduct implements Product {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-
-        CommonProduct that = (CommonProduct) object;
-
-        if (id != that.id) return false;
-        if (isActive != that.isActive) return false;
-        if (Double.compare(price, that.price) != 0) return false;
-        return Objects.equals(name, that.name);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CommonProduct that = (CommonProduct) o;
+        return id == that.id && isActive == that.isActive && Double.compare(that.price, price) == 0 && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + (isActive ? 1 : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+        return Objects.hash(id, isActive, name, price);
     }
 
     @Override
     public String toString() {
         return String.format("Продукт: идентификатор - %d, " +
-                "наименование - %s, цена - %.2f, активен - %s.",
-                id , name, price, isActive ? "да" : "нет");
+                        "наименование - %s, цена - %.2f, активен - %s.",
+                id, name, price, isActive ? "да" : "нет");
     }
 }

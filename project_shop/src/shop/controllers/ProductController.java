@@ -7,11 +7,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProductController {
+
     private ProductService service;
+
     public ProductController(ProductService service) {
         this.service = service;
     }
-    public void addProduct(){
+
+    public void addProduct() {
 
         try {
             Scanner scanner = new Scanner(System.in);
@@ -27,7 +30,8 @@ public class ProductController {
             throw new RuntimeException(e);
         }
     }
-    public List<Product> getAllProducts(){
+
+    public List<Product> getAllProducts() {
         return service.getAllActiveProducts();
     }
 }

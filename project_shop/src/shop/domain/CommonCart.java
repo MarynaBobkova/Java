@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class CommonCart implements Cart {
+
     private int id;
     private List<Product> products = new ArrayList<>();
 
@@ -24,21 +25,19 @@ public class CommonCart implements Cart {
 
     @Override
     public boolean addProduct(Product product) {
-
         return products.add(product);
     }
 
     @Override
-    public boolean deleteProdactById(int id) {
-       // return products.removeIf(x -> x.getId() == id);
-        Iterator<Product> iterator = products.iterator();
-        while (iterator.hasNext()) {
-            if(iterator.next().getId() == id) {
-                iterator.remove();
-                return true;
-            }
-        }
-        return false;
+    public boolean deleteProductById(int id) {
+       Iterator<Product> iterator = products.iterator();
+       while (iterator.hasNext()) {
+           if (iterator.next().getId() == id) {
+               iterator.remove();
+               return true;
+           }
+       }
+       return false;
     }
 
     @Override
@@ -57,21 +56,16 @@ public class CommonCart implements Cart {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-
-        CommonCart that = (CommonCart) object;
-
-        if (id != that.id) return false;
-        return Objects.equals(products, that.products);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CommonCart that = (CommonCart) o;
+        return id == that.id && Objects.equals(products, that.products);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (products != null ? products.hashCode() : 0);
-        return result;
+        return Objects.hash(id, products);
     }
 
     @Override
